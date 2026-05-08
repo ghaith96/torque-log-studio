@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "gea-framework": {
+      "source": "dashersw/gea",
+      "sourceType": "github",
+      "skillPath": ".cursor/skills/gea-framework/SKILL.md",
+      "computedHash": "75be8e12557cec6cf3d063c640715413ecedb36a377606cdbf1cf0cc14834c02"
+    },
+    "gea-ui-components": {
+      "source": "dashersw/gea",
+      "sourceType": "github",
+      "skillPath": ".cursor/skills/gea-ui-components/SKILL.md",
+      "computedHash": "0aa474aca070d704025107e54294549203a10f095aadf99218096f473b27c332"
+    }
+  }
+}

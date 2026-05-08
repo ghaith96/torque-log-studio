@@ -1,6 +1,6 @@
 import { Component } from '@geajs/core'
-import 'uPlot/dist/uPlot.min.css'
-import type uPlot from 'uPlot'
+import 'uplot/dist/uPlot.min.css'
+import type uPlot from 'uplot'
 import { mountCombinedPlotInSlot, resizePlotsToSlots } from '../chart/mount-session-plots'
 import { CHART_COMBINED_HEIGHT_PX, CHART_MIN_WIDTH_PX } from '../chart/uplot-theme'
 import sessionStore from '../session-store'

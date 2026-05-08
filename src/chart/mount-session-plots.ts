@@ -1,4 +1,4 @@
-import uPlot from 'uPlot'
+import uPlot from 'uplot'
 import { downsampleMultiSeries, downsampleSeries } from '../domain/downsample'
 import type { SerializedChannel } from '../domain/worker-protocol'
 import {

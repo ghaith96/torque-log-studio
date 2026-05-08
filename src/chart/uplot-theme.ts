@@ -1,4 +1,4 @@
-import type uPlot from 'uPlot'
+import type uPlot from 'uplot'
 
 /** uPlot marks focused series internally (not public API — see setFocus in uPlot source). */
 type SeriesFocus = { _focus?: boolean | null }

@@ -5,15 +5,20 @@ import {
   isCsvFileName,
 } from './domain/csv-input'
 import { unknownErrorMessage } from './domain/error-message'
+import { mergePersistedSelection } from './domain/channel-prefs-merge'
 import type { SerializedSession } from './domain/worker-protocol'
-import { initialSelectedChannelIds } from './domain/session-selection'
 import type { CsvParsePort } from './ports/csv-parse-port'
+import type { ChannelPrefsPort } from './ports/channel-prefs-port'
+import { localStorageChannelPrefs } from './adapters/local-storage-channel-prefs'
 
 export type UiStatus = 'idle' | 'parsing' | 'ready' | 'error'
 
 class SessionStore extends Store {
   /** Dependency inversion — allows swapping CSV backend without changing UI (OCP). */
   parser: CsvParsePort = csvWorkerParseAdapter
+
+  /** Persisted signal selection per origin (ADR-004); swap for alternate adapters. */
+  channelPrefs: ChannelPrefsPort = localStorageChannelPrefs
 
   status: UiStatus = 'idle'
   progressPct = 0
@@ -38,7 +43,9 @@ class SessionStore extends Store {
         this.progressPct = pct
       })
       this.session = session
-      this.selectedIds = initialSelectedChannelIds(session.channels)
+      const snapshot = this.channelPrefs.load()
+      const persistedIds = snapshot?.channelIds ?? []
+      this.selectedIds = mergePersistedSelection(persistedIds, session.channels)
       this.status = 'ready'
     } catch (e) {
       this.applyParseFailure(e)
@@ -73,6 +80,7 @@ class SessionStore extends Store {
     if (!selected && exists) {
       this.selectedIds = this.selectedIds.filter((x) => x !== id)
     }
+    this.channelPrefs.save(this.selectedIds)
   }
 
   reset(): void {

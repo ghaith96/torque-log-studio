@@ -1,5 +1,4 @@
 import { Component } from '@geajs/core'
-import { formatDuration } from '../format-duration'
 import sessionStore from '../session-store'
 import CombinedChart from './combined-chart'
 
@@ -21,15 +20,6 @@ export default class ChartStack extends Component {
             {warnings.join(' ')}
           </div>
         ) : null}
-        <header class="chart-stack__head">
-          <div>
-            <p class="label">Trip timeline</p>
-            <p class="chart-stack__sub">
-              {session.rowCount.toLocaleString()} samples ·{' '}
-              {formatDuration(session.durationSec)} span · horizontal axis: seconds from trip start
-            </p>
-          </div>
-        </header>
         {visible.length === 0 ? (
           <p class="chart-stack__empty">Select at least one signal to plot.</p>
         ) : (

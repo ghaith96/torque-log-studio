@@ -80,8 +80,8 @@ export default class CombinedChart extends Component {
   template() {
     return (
       <article class="chart-card chart-card--combined">
-        <div class="chart-card__legend-help">
-          <p class="chart-card__legend-help-title">Chart &amp; legend</p>
+        <details class="chart-card__legend-help">
+          <summary class="chart-card__legend-help-summary">Chart &amp; legend tips</summary>
           <ul class="chart-card__legend-help-list">
             <li>Drag on the plot to scrub time; values update in the legend.</li>
             <li>
@@ -92,7 +92,7 @@ export default class CombinedChart extends Component {
             </li>
             <li>Move the pointer near a line to emphasize it by proximity.</li>
           </ul>
-        </div>
+        </details>
         <div class="chart-slot chart-slot--combined" />
       </article>
     )
